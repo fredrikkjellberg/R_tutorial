@@ -531,3 +531,78 @@ factor_speed_vector
 
 # R prints automagically in the right order
 summary(factor_speed_vector) 
+
+
+
+#################
+# DATA FRAMS
+
+#You may remember from the chapter about matrices that all the elements that you put in a matrix should be of the same type. Back then, your data set on Star Wars only contained numeric elements.
+#When doing a market research survey, however, you often have questions such as:
+#'Are your married?' or 'yes/no' questions (= boolean data type)
+#'How old are you?' (= numeric data type)
+#'What is your opinion on this product?' or other 'open-ended' questions (= character data type)
+#The output, namely the respondents' answers to the questions formulated above, is a data set of different data types. You will often find yourself working with data sets that contain different data types instead of only one.
+#A data frame has the variables of a data set as columns and the observations as rows. This will be a familiar concept for those coming from different statistical software packages such as SAS or SPSS.
+
+mtcars # Built-in R data set stored in a data frame
+
+#A data frame has the variables of a data set as columns and the observations as rows. This will be a familiar concept for those coming from different statistical software packages such as SAS or SPSS
+
+#the function head() enables you to show the first observations of a data frame (or any R object you pass to it). Unoriginally, the function tail() prints out the last observations in your data set
+head(mtcars)
+
+#Another method that is often used to get a rapid overview of your data is the function str(). The function str() shows you the structure of your data set. For a data frame it tells you:
+#The total number of observations (e.g. 32 car types)
+#The total number of variables (e.g. 11 car features)
+#A full list of the variables names (e.g. mpg, cyl … )
+#The data type of each variable (e.g. num for car features)
+#The first observations
+#Applying the str() function will often be the first thing that you do when receiving a new data set or data frame. It is a great way to get more insight in your data set before diving into the real analysis.
+
+str(mtcars)
+
+planets <- c("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune");
+type <- c("Terrestrial planet", "Terrestrial planet", "Terrestrial planet", "Terrestrial planet", "Gas giant", "Gas giant", "Gas giant", "Gas giant")
+diameter <- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883); 
+rotation <- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67);
+rings <- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE);
+
+# Create the data frame:
+planets_df  <-data.frame(planets,type,diameter,rotation,rings)
+
+#Similar to vectors and matrices, you select elements from a data frame with the help of square brackets [ ]. By using a comma, you can indicate what to select from the rows and the columns respectively. For example:
+my_data_frame[1,2] #selects from the first row in my_data_frame the second element.
+my_data_frame[1:3,2:4] #selects rows 1,2,3 and columns 2,3,4 in my_data_frame.
+#Sometimes you want to select all elements of a row or column. To do this, you can use the follwing. my_data_frame[1, ] selects all elements of the first row. Let us now apply this technique on planets_df!
+
+# The 'planets_df' data frame from the previous exercise is pre-loaded
+planets_df[1,2] #selects from the first row in my_data_frame the second element.
+planets_df[1:3,2:4] #selects rows 1,2,3 and columns 2,3,4 in my_data_frame.
+
+head(planets_df)
+planets_df
+# All data from the first three planets
+closest_planets_df <- planets_df[1:3,]
+
+# All data from the last three planets
+furthest_planets_df <- planets_df[6:8,]
+
+# Have a look:
+closest_planets_df
+furthest_planets_df
+
+#Select for the last six rows only the diameter and assign this selection to furthest_planets_diameter.
+# Do selection on both rows and columns
+furthest_planets_diameter <- planets_df[3:8,"diameter"]
+
+#You will often want to select an entire column, namely one specific variable from a data frame. If you want to select all elements of the variable rings, both planets_df[,5] and planets_df[,"rings"] do the trick.
+#However, there is a short-cut. Use the $-sign to tell R that it only has to look up all the elements of the variable behind the sign:
+
+data_frame_name$variable_name
+
+
+#Make use of the $-sign to create the variable rings_vector that contains all elements of the rings variable in the planets_df data frame.
+
+# Create the rings_vector
+rings_vector <- planets_df$rings
