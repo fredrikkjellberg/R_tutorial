@@ -222,8 +222,145 @@ poker_winning_days
 
 
 ######################
-# What's a matrix?
+# matrix
 
+#In R, a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns. Since you are only working with rows and columns, a matrix is called two-dimensional.
+#You can construct a matrix in R with the matrix() function. Consider the following example:
+matrix(1:9, byrow = TRUE, nrow = 3)
+
+with the matrix function. The data elements must be of the same basic type.
+
+> A = matrix( 
++   c(2, 4, 3, 1, 5, 7), # the data elements 
++   nrow=2,              # number of rows 
++   ncol=3,              # number of columns 
++   byrow = TRUE)        # fill matrix by rows 
+ 
+A                      # print the matrix 
+#     [,1] [,2] [,3] 
+#[1,]    2    4    3 
+#[2,]    1    5    7
+#An element at the mth row, nth column of A can be accessed by the expression A[m, n].
+
+A[2, 3]      # element at 2nd row, 3rd column 
+#[1] 7
+#The entire mth row A can be extracted as A[m, ].
+
+A[2, ]       # the 2nd row 
+#[1] 1 5 7
+#Similarly, the entire nth column A can be extracted as A[ ,n].
+
+A[ ,3]       # the 3rd column 
+#[1] 3 7
+#We can also extract more than one rows or columns at a time.
+
+A[ ,c(1,3)]  # the 1st and 3rd columns 
+#[,1] [,2] 
+#[1,]    2    3 
+#[2,]    1    7
+#If we assign names to the rows and columns of the matrix, than we can access the elements by names.
+
+dimnames(A) = list( 
++   c("row1", "row2"),         # row names 
++   c("col1", "col2", "col3")) # column names 
+ 
+A                 # print A 
+#     col1 col2 col3 
+#row1    2    4    3 
+#row2    1    5    7 
+ 
+A["row2", "col3"] # element at 2nd row, 3rd column 
+#[1] 7
+
+#In the matrix() function:
+#  The first argument is the collection of elements that R will arrange into the rows and columns of the matrix. Here, we use 1:9 which constructs the vector c(1, 2, 3, 4, 5, 6, 7, 8, 9).
+#  The argument byrow indicates that the matrix is filled by the rows. If we want the vector to be filled by the columns, we just place byrow = FALSE.
+#  The third argument nrow indicates that the matrix should have three rows.
+
+# mutiple vecotors into one matrix
+V1 <- rnorm(20)
+V2 <- rnorm(20)
+V3 <- rnorm(20)
+mat <- matrix(c(V1,V2),ncol=length(V1))
+
+#lets try this with our movie vectors
+
+# Box office Star Wars: In Millions!
+# The first element: US, the second element: Non-US 
+new_hope <- c(460.998, 314.4)
+empire_strikes <- c(290.475, 247.900)
+return_jedi <- c(309.306, 165.8)
+
+# Add your code below to Construct matrix
+star_wars_matrix <- matrix(
++c( new_hope, #addign first row
++   empire_strikes, #adding second row
++   return_jedi #adding to third row
++ ), 
++byrow = TRUE,  #adding by row
++ncol = 3) # number of rows
+
+star_wars_matrix <- matrix(data=c(new_hope,empire_strikes,return_jedi), byrow = TRUE, nrow = 3)
+
+#Similar to vectors, you can add names for the rows and the columns of a matrix
+rownames(my_matrix) <- row_# Add your code here such that rows and columns of star_wars_matrix have a name!
+
+# lets do this with our test data
+row_names_vector <- c("A New Hope","The Empire Strikes Back","Return of the Jedi")
+col_names_vector <- c("US","non-US")
+
+rownames(star_wars_matrix ) <- row_names_vector
+colnames(star_wars_matrix ) <- col_names_vector
+
+#In R, the function rowSums() conveniently calculates the totals for each row of a matrix. This function creates a new vector:
+
+# Box office Star Wars: In Millions (!) 
+# Construct matrix 
+box_office_all <- c(461, 314.4, 290.5, 247.9, 309.3, 165.8)
+movie_names <- c("A New Hope","The Empire Strikes Back","Return of the Jedi")
+col_titles <- c("US","non-US")
+star_wars_matrix <- matrix(box_office_all, nrow=3, byrow = TRUE, dimnames = list(movie_names, col_titles))
+
+# Your code here
+worldwide_vector <- rowSums(star_wars_matrix) 
+
+#You can add a column or multiple columns to a matrix with the cbind() function, which merges matrices and/or vectors together by column. For example:
+
+big_matrix <- cbind(matrix1, matrix2, vector1 ...)
+
+# Bind the new variable worldwide_vector as a column to star_wars_matrix
+all_wars_matrix <- cbind(star_wars_matrix,worldwide_vector)
+
+
+#row conbind
+
+#Assign to all_wars_matrix a new matrix with star_wars_matrix in the first three rows and star_wars_matrix2 in the next three rows.
+# Combine both Star Wars trilogies in one matrix
+all_wars_matrix <- rbind(star_wars_matrix,star_wars_matrix2)
+
+#                           US non-US
+# A New Hope              461.0  314.4
+# The Empire Strikes Back 290.5  247.9
+# Return of the Jedi      309.3  165.8
+# > star_wars_matrix2
+#                       US non-US
+# The Phantom Menace   474.5  552.5
+# Attack of the Clones 310.7  338.7
+# Revenge of the Sith  380.3  468.5
+# > all_wars_matrix
+#                           US non-US
+# A New Hope              461.0  314.4
+# The Empire Strikes Back 290.5  247.9
+# Return of the Jedi      309.3  165.8
+# The Phantom Menace      474.5  552.5
+# Attack of the Clones    310.7  338.7
+# Revenge of the Sith     380.3  468.5
+
+#Just like every cbind() has a rbind(), every colSums() has a rowSums(). 
+
+#Calculate the total revenue for the US and the non-US region and assign total_revenue_vector. You can use the colSums() function.
+# Total revenue for US and non-US
+total_revenue_vector <- colSums(all_wars_matrix)
 
 
 
