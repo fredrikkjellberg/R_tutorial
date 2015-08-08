@@ -363,4 +363,69 @@ all_wars_matrix <- rbind(star_wars_matrix,star_wars_matrix2)
 total_revenue_vector <- colSums(all_wars_matrix)
 
 
+#Similar to vectors, you can use the square brackets [ ] to select one or multiple elements from a matrix. Whereas vectors have one dimension, matrices have two dimensions. You should therefore use a comma to separate that what to select from the rows from that what you want to select from the columns. For example:
+my_matrix[1,2] #selects from the first row the second element.
+my_matrix[1:3,2:4] #selects rows 1,2,3 and columns 2,3,4.
 
+#If you want to select all elements of a row or a column, no number is needed before or after the comma, respectively:
+my_matrix[,1] #selects all elements of the first column.
+my_matrix[1,] #selects all elements of the first row.
+
+# Average non-US revenue per movie
+non_us_all  <-  mean(star_wars_matrix[,2]) #2nd column all rows which is non-us revenue for all movies
+non_us_all 
+non_us_all_1  <-  mean(star_wars_matrix[,"non-US"]) #non-us revenue for all movies
+non_us_all_1 
+# Average non-US revenue of first two movies
+non_us_some <- mean(star_wars_matrix[1:2,2])  #2nd column all rows (non-US) and first tow movies (rows)
+
+
+#Similar to what you have learned with vectors, the standard operators like +, -, /, *, etc. work in an element-wise way on matrices in R.
+#For example: 2 * my_matrix multiplies each element of my_matrix by two. Again, R recycles the value 2 behind the scenes, building a matrix containing only 2s with the same dimensions as my_matrix. Then, R carries out the element-wise operation.
+#xAs a newly-hired data analyst for Lucasfilm, it is your job is to find out how many visitors went to each movie for each geographical area. You already have the total revenue figures in star_wars_matrix. Assume that the price of a ticket was 5 dollars. Note that box office numbers divided by the ticket price gives you the number of visitors.
+
+
+
+price <- 5 # price is 5$
+# Estimation of visitors
+visitors <- star_wars_matrix/5 # number of visitors based on a ticket price of 5$
+ 
+star_wars_matrix 
+# Print the estimate to the console
+visitors
+
+# > star_wars_matrix
+# US non-US
+# A New Hope              461.0  314.4
+# The Empire Strikes Back 290.5  247.9
+# Return of the Jedi      309.3  165.8
+# > # Print the estimate to the console
+#   > visitors
+# US non-US
+# A New Hope              92.20  62.88
+# The Empire Strikes Back 58.10  49.58
+# Return of the Jedi      61.86  33.16
+
+#Just like 2*my_matrix multiplied every element of my_matrix by two, my_matrix1 * my_matrix2 creates a matrix where each element is the product of the corresponding elements in my_matrix1 and my_matrix2.
+#After looking at the result of the previous exercise, big boss Lucas points out that the ticket prices went up over time with one dollar per movie. He asks to redo the analysis based on the prices you can find in ticket_prices_matrix (source: imagination).
+#Those who are familiar with matrices should note that this is not the standard matrix multiplication for which you should use %*% in R.
+
+ticket_prices_matrix <- matrix(c(5, 5, 6, 6, 7, 7), nrow = 3, byrow = TRUE, dimnames = list(movie_names, col_titles)) 
+ticket_prices_matrix
+
+# Estimated number of visitors
+visitors <- star_wars_matrix/ticket_prices_matrix
+
+# Average number of US visitors
+average_us_visitors <- mean(visitors[,"US"])
+
+# Average number of non-US visitors
+average_non_us_visitors <- mean(visitors[,"non-US"])
+
+###########################
+#  FACTORS
+
+#In this chapter you dive into the wonderful world of factors.
+#The term factor refers to a statistical data type used to store categorical variables. The difference between a categorical variable and a continuous variable is that a categorical variable can belong to a limited number of categories. A continuous variable, on the other hand, can correspond to an infinite number of values.
+#It is important that R knows whether it is dealing with a continuous or a categorical variable, as the statistical models you will develop in the future treat both types differently. (You will see later why this is the case.)
+#A good example of a categorical variable is the variable 'Gender'. A human individual can either be "Male" or "Female", making abstraction of intersexes. So here "Male" and "Female" are, in a simplified sense, the two values of the categorical variable "Gender", and every observation can be assigned to either the value "Male" of "Female".
