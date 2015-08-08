@@ -102,3 +102,49 @@ poker_vector <- c(140,-50,20,-120,240)
 
 # Roulette winnings form Monday to Friday
 roulette_vector <- c(-24,-50,100,-350,10)
+
+
+#As a data analyst, it is important to have a clear view on the data that you are using. Understanding what each element refers to is therefore essential.
+#In the previous exercise, we created a vector with your winnings over the week. Each vector element refers to a day of the week but it is hard to tell which element belongs to which day. It would be nice if you could show that in the vector itself.
+#You can give a name to the elements of a vector with the names() function. Have a look at this example:
+
+some_vector <- c("Johnny", "Poker Player")
+names(some_vector) <- c("Name", "Profession")
+
+# Create the variable days_vector
+days_vector <- c('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
+# Assign the names of the day to the roulette and poker_vectors
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Print the named vectors to the console
+poker_vector
+roulette_vector
+
+##########################################
+#  arithmetic calculations on vectors.
+
+#It is important to know is that if you sum two vectors in R, it takes the element-wise sum. For example, the following three statements are completely equivalent:
+> c(1, 2, 3) + c(4, 5, 6)
+#[1] 5 7 9
+> c(1 + 4, 2 + 5, 3 + 6)
+#[1] 5 7 9
+> c(5, 7, 9)
+#[1] 5 7 9
+
+
+A_vector <- c(1, 2, 3)
+B_vector <- c(4, 5, 6)
+
+# Take the sum of A_vector and B_vector
+total_vector <-c(1, 2, 3)+c(4, 5, 6)
+# Show me:
+total_vector
+
+
+
+
+
+
+
+
