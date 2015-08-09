@@ -624,3 +624,15 @@ subset(planets_df, subset = rings == TRUE)
 # 'planets_df' is pre-loaded in your workspace
 # Planets that are smaller than planet Earth:
 small_planets_df  <- subset(planets_df, subset = diameter<1)
+
+
+##########
+# SORTING
+
+# Making and creating rankings is one of mankind's favorite affairs. 
+# These rankings can be useful (best universities in the world), entertaining (most influencial moviestars) or pointless (best 007 look-a-like). 
+# Up to you for which purpose you want to use your R skills ;-).
+# In data analysis you will sort your data according to a certain variable in the data set.
+# In R, this is done with the help of the function order().
+# order() is a function that gives you the ranked position of each element when it is applied on a variable, such as a vector for example. Let us look at the vector a: a <- c(100,9,101)
+
