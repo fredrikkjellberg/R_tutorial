@@ -478,7 +478,6 @@ factor_survey_vector
 levels(factor_survey_vector) <- c("Female","Male") #the first name in the vector will be assigned to the first factor in the vector
 
 factor_survey_vector
-
 # your favourite functions in R will be summary(). This will give you a quick overview of some_variable:
 
 #Going back to our survey, you would like to know how many "Male" responses you have in your study, and how many "Female" responses. The summary() function gives you the answer to this question.
@@ -491,8 +490,8 @@ factor_survey_vector
 summary(survey_vector)
 
 #   Length     Class      Mode 
-#        5 character character 
-        
+#    5 character character 
+
 # Type your code here for 'factor_survey_vector'
 summary(factor_survey_vector)
 # Female   Male 
@@ -606,3 +605,22 @@ data_frame_name$variable_name
 
 # Create the rings_vector
 rings_vector <- planets_df$rings
+
+
+# Select the information on planets with rings:
+planets_with_rings_df <- planets_df[rings_vector==TRUE,]
+
+planets_with_rings_df <- planets_df[planets_df$rings==TRUE,]
+
+#So what exactly did you learn in the previous exercises? You selected a subset from a data frame (planets_df) based on whether or not a certain condition was true (rings or no rings), and you managed to pull out all relevant data. Pretty awesome! By now, NASA is probably already flirting with your CV ;-).
+#Now, let us move up one level and use the function subset(). You should see the subset() function as a short-cut to do exactly the same as what you did in the previous exercises.
+subset(my_data_frame, subset = some_condition)
+
+#The first argument of subset() specifies the data set for which you want a subset. By adding the second argument, you give R the necessary information and conditions to select the correct subset.
+#For example:
+subset(planets_df, subset = rings == TRUE)
+#R will give you exactly the same result as you got in the previous exercise. But this time without needing the rings_vector!
+
+# 'planets_df' is pre-loaded in your workspace
+# Planets that are smaller than planet Earth:
+small_planets_df  <- subset(planets_df, subset = diameter<1)
