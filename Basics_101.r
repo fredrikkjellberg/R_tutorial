@@ -653,3 +653,23 @@ largest_first_df <- planets_df[positions,]
 #A list in R allows you to gather a variety of objects under one name (that is, the name of the list) in an ordered way. These objects can be matrices, vectors, data frames, even other lists, etc. It is not even required that these objects are related to each other. Just like your to-do list :-).
 #Maybe you can even say that a list is a kind of super data type ;-)
 
+# Vector with numerics from 1 up to 10
+my_vector <- 1:10 
+# Matrix with numerics from 1 up to 9
+my_matrix <- matrix(1:9, ncol = 3)
+# First 10 elements of the built-in data frame 'mtcars'
+my_df <- mtcars[1:10,]
+
+# Construct 'my_list' with these different elements:
+my_list <- list(my_vector, my_matrix, my_df)
+
+# Print 'my_list' to the console
+
+#Well done! Let us keep this train going!
+#Just like on your to-do list, you want to avoid not knowing or remembering what the components of your list stand for. That is why you should give names to them:
+#my_list <- list(name1 = your_comp1, 
+#                name2 = your_comp2 ...)
+#This creates a list with the components "name1" and "name2" and so on. If you want to name your lists after you've created them, you can use the names() function as you did with vectors. The following commands are fully equivalent to the assignment above:
+my_list <- list(your_comp1, your_comp2 ...)
+names(my_list) <- c("name1", "name2" ...)
+Instructions
