@@ -636,3 +636,20 @@ small_planets_df  <- subset(planets_df, subset = diameter<1)
 # In R, this is done with the help of the function order().
 # order() is a function that gives you the ranked position of each element when it is applied on a variable, such as a vector for example. Let us look at the vector a: a <- c(100,9,101)
 
+# What is the correct ordering based on the planets_df$diameter variable?
+positions <- order(planets_df$diameter, decreasing = TRUE)
+
+# Create new "ordered" data frame:
+largest_first_df <- planets_df[positions,]
+
+#Vectors (one dimensional array): can hold numeric, character or logical values. The elements in one vector all have the same datatype.
+#Matrices (two dimensional array): can hold numeric, character or logical values. The elements in one matrix all have the same datatype.
+#Data frames (two-dimensional objects): can hold numeric, character or logical values. Within a column all elements have the same data type, but different columns can be of different data type.
+
+#####################
+## LISTS
+
+#A list in R is similar to your to-do list at work or school: the different items on that list most likely differ in length, characteristic, type of activity that has to do be done, …
+#A list in R allows you to gather a variety of objects under one name (that is, the name of the list) in an ordered way. These objects can be matrices, vectors, data frames, even other lists, etc. It is not even required that these objects are related to each other. Just like your to-do list :-).
+#Maybe you can even say that a list is a kind of super data type ;-)
+
