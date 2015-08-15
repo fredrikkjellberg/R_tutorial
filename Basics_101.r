@@ -667,9 +667,86 @@ my_list <- list(my_vector, my_matrix, my_df)
 
 #Well done! Let us keep this train going!
 #Just like on your to-do list, you want to avoid not knowing or remembering what the components of your list stand for. That is why you should give names to them:
-#my_list <- list(name1 = your_comp1, 
-#                name2 = your_comp2 ...)
+my_list <- list(name1 = your_comp1, 
+                name2 = your_comp2 ...)
 #This creates a list with the components "name1" and "name2" and so on. If you want to name your lists after you've created them, you can use the names() function as you did with vectors. The following commands are fully equivalent to the assignment above:
 my_list <- list(your_comp1, your_comp2 ...)
 names(my_list) <- c("name1", "name2" ...)
-Instructions
+
+###################################
+
+# Construct 'my_list' with these different elements:
+my_list <- list(my_vector, my_matrix, my_df)
+
+names(my_list) <- c("vec","mat","df")
+
+
+#For example creat the variable shining_list. The list contains the following components:
+#moviename: “The Shining”
+#actors: a vector with the main actors' names
+#reviews: a data frame that contains some reviews
+#Do not forget to name the list components accordingly!
+
+moviename <- 'The Shining'
+shining_list <- list(moviename,actors, reviews)
+
+#nameing 
+names(shining_list) <- c("moviename", "actors", "reviews")
+
+################################
+#Selecting elements from a list
+
+#Your list will often be built out of numerous elements and components. Therefore, getting a single element, multiple elements, or a component out of it is not always straightforward.
+#One way to select a component is using the numbered position of that component. For example, to “grab” the first component of shining_list you type
+shining_list[[1]]
+
+#A quick way to check this out is typing it in the console. Important to remember: to select elements out of a data set you use square brackets [ ], do not mix them up!
+#Another way to check is to refer to the names of the components.
+
+shining_list[["reviews"]]
+#selects the reviews data frame. The same is true for the shorter version shining_list$reviews, that uses the $-sign.
+#Besides selecting components, you often need to select specific elements out of these components. For example, with shining_list[[2]][1] you select from the second component, actors (shining_list[[2]]), the first element ([1]). When you type this in the console, you will see the answer is Jack Nicholson.
+
+# 'shining_list' is already pre-loaded in the workspace
+
+#Select from the shining_list the last actor and assign the result to last_actor.
+#Select from the shining_list all information regarding the second review. Store the result in second_review.
+
+shining_list
+
+shining_list[[2]] # will select actors
+
+length(shining_list[[2]]) # will give you the length of the actors list which is also the same as the last actor
+
+# Define 'last_actor'
+last_actor <- shining_list[[2]][length(shining_list[[2]])]
+
+# Define 'second_review'
+shining_list[[3]][2,] # this will give second row in the data fram
+
+second_review <-  shining_list[[3]][2,] # this will give the 2nd row in the dataframe
+
+#########################
+## Adding more information to a list
+
+#Being proud of your first list, you shared it with the members of your movie hobby club. However, one of the senior members, a guy named M. McDowell, noted that you forgot to add the release year. Given your ambitions to become next year's president of the club, you decide to add this information to the list.
+#In order to conveniently add elements to lists you use the concatenate function c():
+c(list1 , some_variable)
+
+#This will simply extend the original list, list1, with the component some_variable. This component gets appended to the end of the list. If you want to give the new list item a name, you just add the name as you did before:
+c(list1, new_name = some_variable)
+
+# 'shining_list', the list containing moviename, actors and reviews, is pre-loaded in the workspace
+year <- 1980
+
+# We forgot something; add the year to shining_list
+shining_list_full <- c(shining_list, year = year)
+
+# Have a look at shining_list_full
+str(shining_list_full)
+
+
+
+
+
+
